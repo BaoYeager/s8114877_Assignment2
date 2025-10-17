@@ -141,6 +141,8 @@
         tools:listitem="@layout/contributions_project" />
 
 
+
+
     <!--    old code( manually add picture)-->
     <!--    <View-->
     <!--        android:id="@+id/square1"-->

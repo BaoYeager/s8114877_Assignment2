@@ -8,11 +8,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.s8114877_assignment2.R
 import com.example.s8114877_assignment2.ui.Project
 
+// add callback onItemClick to navigate click
+class ProjectAdapter(
+    private val projects: List<Project>,
+    private val onItemClick: (Project) -> Unit
+) : RecyclerView.Adapter<ProjectAdapter.ProjectViewHolder>() {
 
-class ProjectAdapter(private val projects: List<Project>) :
-    RecyclerView.Adapter<ProjectAdapter.ProjectViewHolder>() {
-
-    class ProjectViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ProjectViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val name: TextView = itemView.findViewById(R.id.textProjectName)
     }
 
@@ -23,11 +25,14 @@ class ProjectAdapter(private val projects: List<Project>) :
     }
 
     override fun onBindViewHolder(holder: ProjectViewHolder, position: Int) {
-        holder.name.text = projects[position].name
+        val project = projects[position]
+        holder.name.text = project.name
+
+        // add click event into item
+        holder.itemView.setOnClickListener {
+            onItemClick(project)
+        }
     }
 
     override fun getItemCount(): Int = projects.size
-
-
-
 }

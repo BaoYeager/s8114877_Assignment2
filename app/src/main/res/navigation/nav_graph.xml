@@ -27,6 +27,11 @@
         android:id="@+id/detailFragment"
         android:name="com.example.s8114877_assignment2.ui.DetailFragment"
         android:label="Detail"
-        tools:layout="@layout/fragment_detail" />
+        tools:layout="@layout/fragment_detail">
+
+        <argument
+            android:name="projectName"
+            app:argType="string" />
+    </fragment>
 
 </navigation>

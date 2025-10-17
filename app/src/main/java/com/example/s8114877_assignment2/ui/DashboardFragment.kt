@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.s8114877_assignment2.R
@@ -17,15 +18,11 @@ class DashboardFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_dashboard, container, false)
-
-        // Lấy RecyclerView từ layout
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerProjects)
 
-        // Thiết lập layoutManager cho RecyclerView (hướng ngang)
         recyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
-        // Danh sách các project (dữ liệu giả)
         val projectList = listOf(
             Project("Project A"),
             Project("Project B"),
@@ -35,9 +32,15 @@ class DashboardFragment : Fragment() {
             Project("Project F")
         )
 
-        // Gắn Adapter vào RecyclerView
-        recyclerView.adapter = ProjectAdapter(projectList)
+        // Adapter with callback click
+        val adapter = ProjectAdapter(projectList) { selectedProject ->
+            // click item move to DetailFragment
+            val action = DashboardFragmentDirections
+                .actionDashboardFragmentToDetailFragment(selectedProject.name)
+            findNavController().navigate(action)
+        }
 
+        recyclerView.adapter = adapter
         return view
     }
 }
