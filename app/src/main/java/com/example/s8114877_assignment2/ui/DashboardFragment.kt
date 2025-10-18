@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,12 +14,18 @@ import com.example.s8114877_assignment2.ui.Adapter.ProjectAdapter
 
 class DashboardFragment : Fragment() {
 
+    private lateinit var keypass: String
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_dashboard, container, false)
+
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerProjects)
+        keypass = DashboardFragmentArgs.fromBundle(requireArguments()).keypass
+
+        Toast.makeText(requireContext(), "Keypass: $keypass", Toast.LENGTH_SHORT).show()
 
         recyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -32,9 +39,7 @@ class DashboardFragment : Fragment() {
             Project("Project F")
         )
 
-        // Adapter with callback click
         val adapter = ProjectAdapter(projectList) { selectedProject ->
-            // click item move to DetailFragment
             val action = DashboardFragmentDirections
                 .actionDashboardFragmentToDetailFragment(selectedProject.name)
             findNavController().navigate(action)

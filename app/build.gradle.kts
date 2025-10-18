@@ -6,7 +6,9 @@ plugins {
     id("androidx.navigation.safeargs.kotlin")
 }
 
+
 android {
+
     namespace = "com.example.s8114877_assignment2"
     compileSdk = 36
 
@@ -62,5 +64,8 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
+    // Retrofit & Gson
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 }
 
