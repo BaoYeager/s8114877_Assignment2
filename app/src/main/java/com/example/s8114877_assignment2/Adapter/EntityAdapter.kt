@@ -1,4 +1,4 @@
-package com.example.s8114877_assignment2.ui.Adapter
+package com.example.s8114877_assignment2.Adapter
 
 import android.view.LayoutInflater
 import android.view.View
