@@ -1,235 +1,271 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.DetailFragment">
+    android:padding="16dp"
+    android:background="#F8F8F8">
 
-
+    <!-- Tiêu đề -->
     <TextView
-        android:id="@+id/textViewProfileTitle"
+        android:id="@+id/textDetailTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Detail"
         android:textSize="30sp"
         android:textStyle="bold"
-        android:textColor="#000000"
+        android:textColor="#333333"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="60dp" />
+        android:layout_marginTop="30dp" />
 
-
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="32dp"
-        android:hint="Search"
-        android:backgroundTint="#D9D9D9"
-        android:background="@drawable/edittext_bg"
-        android:padding="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textViewProfileTitle"
-        />
-
-
-    <TextView
-        android:id="@+id/textview1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="16dp"
-        android:text="Trending Animals"
-        android:textColor="#333333"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/editText"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    -  <View
-    android:id="@+id/view"
-    android:layout_width="380dp"
-    android:layout_height="180dp"
-    android:layout_gravity="center"
-    android:layout_marginTop="30dp"
-    android:adjustViewBounds="true"
-    android:background="#D9D9D9"
-    android:clipToOutline="true"
-    android:contentDescription="Profile Image"
-    android:elevation="4dp"
-    android:padding="8dp"
-    android:scaleType="centerCrop"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.454"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/textview1" />
-
-
-
-    <TextView
-        android:id="@+id/textview2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="16dp"
-        android:text="Writing Your Own Andventure"
-        android:textColor="#333333"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/view"
-        app:layout_constraintStart_toStartOf="parent" />
-
-
-    <TextView
-        android:id="@+id/textview3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Start a Mystery"
-        android:textColor="#333333"
-        android:textSize="18sp"
-        app:layout_constraintTop_toBottomOf="@id/textview2"
-        android:layout_marginTop="2dp"
-        android:layout_marginStart="16dp"
-        app:layout_constraintStart_toStartOf="parent" />
-
-
-
-    <TextView
-        android:id="@+id/textview4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Popular Co-authors"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        android:textColor="#000000"
-        app:layout_constraintTop_toTopOf="@id/textview3"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart ="16dp"
-        android:layout_marginTop="40dp" />
-
+    <!-- RecyclerView hiển thị 7 property -->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerCoAuthors"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/textview4"
+        android:id="@+id/recyclerViewDetail"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/textDetailTitle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-
-    <!--    old code( manually add picture)-->
-    <!--    <View-->
-    <!--        android:id="@+id/square1"-->
-    <!--        android:layout_width="120dp"-->
-    <!--        android:layout_height="120dp"-->
-    <!--        android:background="#B0B0B0"-->
-    <!--        app:layout_constraintTop_toTopOf="@id/textview4"-->
-    <!--        app:layout_constraintHorizontal_chainStyle="spread"-->
-    <!--        android:layout_marginTop="40dp"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        android:layout_marginStart ="16dp" />-->
-
-    <!--    <View-->
-    <!--        android:id="@+id/square2"-->
-    <!--        android:layout_width="120dp"-->
-    <!--        android:layout_height="120dp"-->
-    <!--        android:background="#A0A0A0"-->
-    <!--        app:layout_constraintStart_toEndOf="@id/square1"-->
-    <!--        app:layout_constraintTop_toTopOf="@id/textview4"-->
-    <!--        android:layout_marginTop="40dp"-->
-    <!--        android:layout_marginStart ="8dp"/>-->
-
-    <!--    <View-->
-    <!--        android:id="@+id/square3"-->
-    <!--        android:layout_width="120dp"-->
-    <!--        android:layout_height="120dp"-->
-    <!--        android:background="#909090"-->
-    <!--        app:layout_constraintStart_toEndOf="@id/square2"-->
-    <!--        app:layout_constraintTop_toTopOf="@id/textview4"-->
-    <!--        android:layout_marginTop="40dp"-->
-    <!--        android:layout_marginStart ="8dp"/>-->
-
-    <!--    <TextView-->
-    <!--        android:id="@+id/textview5"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginTop="8dp"-->
-    <!--        android:layout_marginStart="16dp"-->
-    <!--        android:text="Story A"-->
-    <!--        android:textColor="#333333"-->
-    <!--        android:textSize="20sp"-->
-    <!--        android:textStyle="bold"-->
-    <!--        app:layout_constraintTop_toBottomOf="@id/square1"-->
-    <!--        app:layout_constraintStart_toStartOf="parent" />-->
-
-    <!--    <TextView-->
-    <!--        android:id="@+id/textview5.5"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginTop="32dp"-->
-    <!--        android:layout_marginStart="16dp"-->
-    <!--        android:text="Author A"-->
-    <!--        android:textColor="#333333"-->
-    <!--        android:textSize="16sp"-->
-    <!--        app:layout_constraintTop_toBottomOf="@id/square1"-->
-    <!--        app:layout_constraintStart_toStartOf="parent" />-->
-
-
-    <!--    <TextView-->
-    <!--        android:id="@+id/textview6"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginStart="60dp"-->
-    <!--        android:layout_marginTop="4dp"-->
-    <!--        android:text="Story B"-->
-    <!--        android:textColor="#333333"-->
-    <!--        android:textSize="20sp"-->
-    <!--        android:textStyle="bold"-->
-    <!--        app:layout_constraintStart_toEndOf="@id/textview5"-->
-    <!--        app:layout_constraintTop_toBottomOf="@id/square2" />-->
-
-    <!--    <TextView-->
-    <!--        android:id="@+id/textview6.5"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginStart="68dp"-->
-    <!--        android:layout_marginTop="28dp"-->
-    <!--        android:text="Author B"-->
-    <!--        android:textColor="#333333"-->
-    <!--        android:textSize="16sp"-->
-    <!--        app:layout_constraintStart_toEndOf="@id/textview5.5"-->
-    <!--        app:layout_constraintTop_toBottomOf="@id/square2" />-->
-
-    <!--    <TextView-->
-    <!--        android:id="@+id/textview7"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginStart="60dp"-->
-    <!--        android:layout_marginTop="8dp"-->
-    <!--        android:text="Story C"-->
-    <!--        android:textColor="#333333"-->
-    <!--        android:textSize="20sp"-->
-    <!--        android:textStyle="bold"-->
-    <!--        app:layout_constraintStart_toEndOf="@id/textview6"-->
-    <!--        app:layout_constraintTop_toBottomOf="@id/square3" />-->
-
-    <!--    <TextView-->
-    <!--        android:id="@+id/textview7.5"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginStart="60dp"-->
-    <!--        android:layout_marginTop="32dp"-->
-    <!--        android:text="Author C"-->
-    <!--        android:textColor="#333333"-->
-    <!--        android:textSize="16sp"-->
-    <!--        app:layout_constraintStart_toEndOf="@id/textview6.5"-->
-    <!--        app:layout_constraintTop_toBottomOf="@id/square3" />-->
-
-
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="16dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:id="@+id/frameLayout"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    tools:context=".ui.DetailFragment">-->
+
+
+<!--    <TextView-->
+<!--        android:id="@+id/textViewProfileTitle"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Detail"-->
+<!--        android:textSize="30sp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:textColor="#000000"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        android:layout_marginTop="60dp" />-->
+
+
+<!--    <EditText-->
+<!--        android:id="@+id/editText"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="32dp"-->
+<!--        android:layout_marginTop="24dp"-->
+<!--        android:layout_marginEnd="32dp"-->
+<!--        android:hint="Search"-->
+<!--        android:backgroundTint="#D9D9D9"-->
+<!--        android:background="@drawable/edittext_bg"-->
+<!--        android:padding="12dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/textViewProfileTitle"-->
+<!--        />-->
+
+
+<!--    <TextView-->
+<!--        android:id="@+id/textview1"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="30dp"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:text="Trending Animals"-->
+<!--        android:textColor="#333333"-->
+<!--        android:textSize="30sp"-->
+<!--        android:textStyle="bold"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/editText"-->
+<!--        app:layout_constraintStart_toStartOf="parent" />-->
+
+<!--    -  <View-->
+<!--    android:id="@+id/view"-->
+<!--    android:layout_width="380dp"-->
+<!--    android:layout_height="180dp"-->
+<!--    android:layout_gravity="center"-->
+<!--    android:layout_marginTop="30dp"-->
+<!--    android:adjustViewBounds="true"-->
+<!--    android:background="#D9D9D9"-->
+<!--    android:clipToOutline="true"-->
+<!--    android:contentDescription="Profile Image"-->
+<!--    android:elevation="4dp"-->
+<!--    android:padding="8dp"-->
+<!--    android:scaleType="centerCrop"-->
+<!--    app:layout_constraintEnd_toEndOf="parent"-->
+<!--    app:layout_constraintHorizontal_bias="0.454"-->
+<!--    app:layout_constraintStart_toStartOf="parent"-->
+<!--    app:layout_constraintTop_toBottomOf="@id/textview1" />-->
+
+
+
+<!--    <TextView-->
+<!--        android:id="@+id/textview2"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:text="Writing Your Own Andventure"-->
+<!--        android:textColor="#333333"-->
+<!--        android:textSize="30sp"-->
+<!--        android:textStyle="bold"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/view"-->
+<!--        app:layout_constraintStart_toStartOf="parent" />-->
+
+
+<!--    <TextView-->
+<!--        android:id="@+id/textview3"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Start a Mystery"-->
+<!--        android:textColor="#333333"-->
+<!--        android:textSize="18sp"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/textview2"-->
+<!--        android:layout_marginTop="2dp"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        app:layout_constraintStart_toStartOf="parent" />-->
+
+
+
+<!--    <TextView-->
+<!--        android:id="@+id/textview4"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Popular Co-authors"-->
+<!--        android:textSize="30sp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:textColor="#000000"-->
+<!--        app:layout_constraintTop_toTopOf="@id/textview3"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        android:layout_marginStart ="16dp"-->
+<!--        android:layout_marginTop="40dp" />-->
+
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/recyclerCoAuthors"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/textview4"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent" />-->
+
+
+<!--    &lt;!&ndash;    old code( manually add picture)&ndash;&gt;-->
+<!--    &lt;!&ndash;    <View&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:id="@+id/square1"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_width="120dp"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_height="120dp"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:background="#B0B0B0"&ndash;&gt;-->
+<!--    &lt;!&ndash;        app:layout_constraintTop_toTopOf="@id/textview4"&ndash;&gt;-->
+<!--    &lt;!&ndash;        app:layout_constraintHorizontal_chainStyle="spread"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_marginTop="40dp"&ndash;&gt;-->
+<!--    &lt;!&ndash;        app:layout_constraintStart_toStartOf="parent"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_marginStart ="16dp" />&ndash;&gt;-->
+
+<!--    &lt;!&ndash;    <View&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:id="@+id/square2"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_width="120dp"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_height="120dp"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:background="#A0A0A0"&ndash;&gt;-->
+<!--    &lt;!&ndash;        app:layout_constraintStart_toEndOf="@id/square1"&ndash;&gt;-->
+<!--    &lt;!&ndash;        app:layout_constraintTop_toTopOf="@id/textview4"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_marginTop="40dp"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_marginStart ="8dp"/>&ndash;&gt;-->
+
+<!--    &lt;!&ndash;    <View&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:id="@+id/square3"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_width="120dp"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_height="120dp"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:background="#909090"&ndash;&gt;-->
+<!--    &lt;!&ndash;        app:layout_constraintStart_toEndOf="@id/square2"&ndash;&gt;-->
+<!--    &lt;!&ndash;        app:layout_constraintTop_toTopOf="@id/textview4"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_marginTop="40dp"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_marginStart ="8dp"/>&ndash;&gt;-->
+
+<!--    &lt;!&ndash;    <TextView&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:id="@+id/textview5"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_width="wrap_content"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_height="wrap_content"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_marginTop="8dp"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_marginStart="16dp"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:text="Story A"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:textColor="#333333"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:textSize="20sp"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:textStyle="bold"&ndash;&gt;-->
+<!--    &lt;!&ndash;        app:layout_constraintTop_toBottomOf="@id/square1"&ndash;&gt;-->
+<!--    &lt;!&ndash;        app:layout_constraintStart_toStartOf="parent" />&ndash;&gt;-->
+
+<!--    &lt;!&ndash;    <TextView&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:id="@+id/textview5.5"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_width="wrap_content"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_height="wrap_content"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_marginTop="32dp"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_marginStart="16dp"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:text="Author A"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:textColor="#333333"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:textSize="16sp"&ndash;&gt;-->
+<!--    &lt;!&ndash;        app:layout_constraintTop_toBottomOf="@id/square1"&ndash;&gt;-->
+<!--    &lt;!&ndash;        app:layout_constraintStart_toStartOf="parent" />&ndash;&gt;-->
+
+
+<!--    &lt;!&ndash;    <TextView&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:id="@+id/textview6"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_width="wrap_content"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_height="wrap_content"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_marginStart="60dp"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_marginTop="4dp"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:text="Story B"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:textColor="#333333"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:textSize="20sp"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:textStyle="bold"&ndash;&gt;-->
+<!--    &lt;!&ndash;        app:layout_constraintStart_toEndOf="@id/textview5"&ndash;&gt;-->
+<!--    &lt;!&ndash;        app:layout_constraintTop_toBottomOf="@id/square2" />&ndash;&gt;-->
+
+<!--    &lt;!&ndash;    <TextView&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:id="@+id/textview6.5"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_width="wrap_content"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_height="wrap_content"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_marginStart="68dp"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_marginTop="28dp"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:text="Author B"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:textColor="#333333"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:textSize="16sp"&ndash;&gt;-->
+<!--    &lt;!&ndash;        app:layout_constraintStart_toEndOf="@id/textview5.5"&ndash;&gt;-->
+<!--    &lt;!&ndash;        app:layout_constraintTop_toBottomOf="@id/square2" />&ndash;&gt;-->
+
+<!--    &lt;!&ndash;    <TextView&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:id="@+id/textview7"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_width="wrap_content"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_height="wrap_content"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_marginStart="60dp"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_marginTop="8dp"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:text="Story C"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:textColor="#333333"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:textSize="20sp"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:textStyle="bold"&ndash;&gt;-->
+<!--    &lt;!&ndash;        app:layout_constraintStart_toEndOf="@id/textview6"&ndash;&gt;-->
+<!--    &lt;!&ndash;        app:layout_constraintTop_toBottomOf="@id/square3" />&ndash;&gt;-->
+
+<!--    &lt;!&ndash;    <TextView&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:id="@+id/textview7.5"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_width="wrap_content"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_height="wrap_content"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_marginStart="60dp"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:layout_marginTop="32dp"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:text="Author C"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:textColor="#333333"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:textSize="16sp"&ndash;&gt;-->
+<!--    &lt;!&ndash;        app:layout_constraintStart_toEndOf="@id/textview6.5"&ndash;&gt;-->
+<!--    &lt;!&ndash;        app:layout_constraintTop_toBottomOf="@id/square3" />&ndash;&gt;-->
+
+
+<!--</androidx.constraintlayout.widget.ConstraintLayout>-->

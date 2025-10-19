@@ -33,7 +33,7 @@
         tools:layout="@layout/fragment_detail">
 
         <argument
-            android:name="projectName"
+            android:name="entityJson"
             app:argType="string" />
     </fragment>
 

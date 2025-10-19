@@ -5,12 +5,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.s8114877_assignment2.R
+import com.example.s8114877_assignment2.ui.Adapter.EntityAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -25,7 +27,7 @@ class DashboardFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_dashboard, container, false)
-        val layoutContainer = view.findViewById<LinearLayout>(R.id.layoutContainer)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerEntities)
 
         val keypass = arguments?.getString("keypass")
         if (keypass.isNullOrEmpty()) {
@@ -33,16 +35,16 @@ class DashboardFragment : Fragment() {
             return view
         }
 
-        Log.d("DashboardDebug", "Received keypass = $keypass")
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         lifecycleScope.launch(Dispatchers.IO) {
             try {
                 val url = URL("https://nit3213api.onrender.com/dashboard/$keypass")
                 val conn = url.openConnection() as HttpURLConnection
                 conn.requestMethod = "GET"
+                conn.setRequestProperty("Accept", "application/json")
                 conn.connectTimeout = 10000
                 conn.readTimeout = 10000
-                conn.setRequestProperty("Accept", "application/json")
                 conn.doInput = true
 
                 val responseCode = conn.responseCode
@@ -50,66 +52,32 @@ class DashboardFragment : Fragment() {
                     conn.inputStream.bufferedReader(Charsets.UTF_8).readText()
                 } else {
                     conn.errorStream?.bufferedReader(Charsets.UTF_8)?.readText()
-                        ?: "Unknown error (no response body)"
+                        ?: "Unknown error"
                 }
 
                 Log.d("DashboardDebug", "Response code = $responseCode")
                 Log.d("DashboardDebug", "Response text = $responseText")
 
-                withContext(Dispatchers.Main) {
-                    if (responseCode == 200) {
-                        try {
-                            val jsonResponse = JSONObject(responseText)
-                            val entities = jsonResponse.getJSONArray("entities")
+                if (responseCode == 200) {
+                    val jsonResponse = JSONObject(responseText)
+                    val entities = jsonResponse.getJSONArray("entities")
 
-                            layoutContainer.removeAllViews()
+                    val list = mutableListOf<JSONObject>()
+                    for (i in 0 until entities.length()) {
+                        list.add(entities.getJSONObject(i))
+                    }
 
-                            for (i in 0 until entities.length()) {
-                                val entity = entities.getJSONObject(i)
-                                val itemView = layoutInflater.inflate(
-                                    R.layout.item_entity,
-                                    layoutContainer,
-                                    false
-                                )
-
-                                val property1View =
-                                    itemView.findViewById<TextView>(R.id.textProperty1)
-                                val property2View =
-                                    itemView.findViewById<TextView>(R.id.textProperty2)
-
-                                // Gộp các thuộc tính (trừ description)
-                                val props = entity.keys().asSequence()
-                                    .filter { it != "description" }
-                                    .toList()
-
-                                if (props.isNotEmpty()) {
-                                    property1View.text =
-                                        "${props[0]}: ${entity.getString(props[0])}"
-                                    if (props.size > 1) {
-                                        property2View.text =
-                                            "${props[1]}: ${entity.getString(props[1])}"
-                                    } else {
-                                        property2View.visibility = View.GONE
-                                    }
-                                }
-
-                                layoutContainer.addView(itemView)
-                            }
-
-                        } catch (e: Exception) {
-                            Toast.makeText(
-                                requireContext(),
-                                "JSON parse error: ${e.message}",
-                                Toast.LENGTH_LONG
-                            ).show()
-                            Log.e("DashboardDebug", "JSON parse error", e)
+                    withContext(Dispatchers.Main) {
+                        recyclerView.adapter = EntityAdapter(list) { entity ->
+                            val jsonString = entity.toString()
+                            val action = DashboardFragmentDirections
+                                .actionDashboardFragmentToDetailFragment(jsonString)
+                            findNavController().navigate(action)
                         }
-                    } else {
-                        Toast.makeText(
-                            requireContext(),
-                            "Failed (${responseCode}): $responseText",
-                            Toast.LENGTH_LONG
-                        ).show()
+                    }
+                } else {
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(requireContext(), "Error: $responseText", Toast.LENGTH_LONG).show()
                     }
                 }
 
